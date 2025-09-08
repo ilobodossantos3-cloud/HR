@@ -1,0 +1,362 @@
+<!-- FileName: index.html -->
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestão de RH</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="max-w-7xl mx-auto p-6">
+        <header class="text-center mb-8">
+            <h1 class="text-4xl font-bold mb-4">Sistema de Gestão de RH</h1>
+            <p class="text-lg text-gray-600">Ferramenta completa para o departamento de Recursos Humanos</p>
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1798e18f-241b-445d-b29a-aa766bfe3a7d.png" alt="Ambiente de escritório moderno brilhante com colaboração em equipe em estações de trabalho, incluindo computadores, plantas e espaços colaborativos em uma configuração corporativa elegante" class="w-full h-64 object-cover rounded-lg shadow-md mb-4">
+        </header>
+
+        <!-- Navegação escondida até login -->
+        <nav id="main-nav" style="display:none;">
+            <div class="flex flex-wrap justify-center space-x-4 mb-6">
+                <button onclick="showSection('dashboard')" class="btn-primary">Painel de Controle</button>
+                <button onclick="showSection('employees')" class="btn-primary">Gestão de Funcionários</button>
+                <button onclick="showSection('recruitment')" class="btn-primary">Recrutamento</button>
+                <button onclick="showSection('time-tracking')" class="btn-primary">Controle de Ponto</button>
+                <button onclick="showSection('performance')" class="btn-primary">Avaliação de Desempenho</button>
+                <button onclick="showSection('training')" class="btn-primary">Treinamentos</button>
+                <button onclick="showSection('reports')" class="btn-primary">Relatórios</button>
+                <button onclick="logout()" class="btn-logout tooltip">Sair
+                    <span class="tooltiptext">Fazer logout do sistema</span>
+                </button>
+            </div>
+        </nav>
+
+        <main>
+            <!-- Tela de Login (única visível inicialmente) -->
+            <section id="login" class="section">
+                <h2 class="text-2xl font-semibold mb-4" id="login-title">Login</h2>
+                <form id="login-form">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-1" id="username-label">Usuário</label>
+                        <input type="text" class="w-full p-2 border rounded" placeholder="Digite o usuário" id="login-username" required>
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-1" id="password-label">Senha</label>
+                        <input type="password" class="w-full p-2 border rounded" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary w-full" id="login-button">Entrar</button>
+                </form>
+                <div class="mt-4 text-center">
+                    <button onclick="forgotPassword()" class="text-gray-600 hover:underline">Esqueceu a senha?</button>
+                </div>
+            </section>
+
+
+
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section" style="display:none;">
+                <h2 class="text-2xl font-semibold mb-4">Painel de Controle</h2>
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/abbbf3dc-e6f8-4314-ba70-14775d6b16e1.png" alt="Interface de painel interativo com cartões de KPI mostrando contagens de funcionários, taxa de rotatividade e métricas de desempenho em um layout limpo e futurista com elementos brilhantes" class="w-full h-64 object-cover rounded-lg shadow-md mb-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold">Total de Funcionários</h3>
+                        <p class="text-3xl text-blue-600" id="kpi-employees">0</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold">Taxa de Rotatividade</h3>
+                        <p class="text-3xl text-green-600" id="kpi-turnover">0%</p>
+                    </div>
+                    <div class="bg-gray-100 p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-bold">Treinamentos Ativos</h3>
+                        <p class="text-3xl text-purple-600" id="kpi-trainings">0</p>
+                    </div>
+                </div>
+                <canvas id="kpi-chart" width="400" height="200"></canvas>
+            </section>
+
+            <!-- Employee Management Section -->
+            <section id="employees" class="section" style="display:none;">
+                <h2 class="text-2xl font-semibold mb-4">Gestão de Funcionários</h2>
+                <form id="employee-form" class="mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-1">Nome</label>
+                            <input type="text" class="w-full p-2 border rounded" id="emp-name" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">CPF</label>
+                            <input type="text" class="w-full p-2 border rounded" id="emp-cpf" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">E-mail</label>
+                            <input type="email" class="w-full p-2 border rounded" id="emp-email" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Telefone</label>
+                            <input type="tel" class="w-full p-2 border rounded" id="emp-phone">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Cargo</label>
+                            <input type="text" class="w-full p-2 border rounded" id="emp-position">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Salário</label>
+                            <input type="number" class="w-full p-2 border rounded" id="emp-salary" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Departamento</label>
+                            <input type="text" class="w-full p-2 border rounded" id="emp-dept">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Data de Admissão</label>
+                            <input type="date" class="w-full p-2 border rounded" id="emp-hire">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Status</label>
+                            <select class="w-full p-2 border rounded" id="emp-status">
+                                <option value="Ativo">Ativo</option>
+                                <option value="Inativo">Inativo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary mt-4">Cadastrar Funcionário</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF</th>
+                            <th>E-mail</th>
+                            <th>Cargo</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employee-table"></tbody>
+                </table>
+            </section>
+
+            <!-- Recruitment Section -->
+            <section id="recruitment" class="section" style="display:none;">
+                <h2 class="text-2xl font-semibold mb-4">Recrutamento e Seleção</h2>
+                <form id="vacancy-form" class="mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-1">Título da Vaga</label>
+                            <input type="text" class="w-full p-2 border rounded" id="vac-title" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Descrição</label>
+                            <textarea class="w-full p-2 border rounded" id="vac-desc"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Requisitos</label>
+                            <textarea class="w-full p-2 border rounded" id="vac-req"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Data de Encerramento</label>
+                            <input type="date" class="w-full p-2 border rounded" id="vac-closing">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary mt-4">Cadastrar Vaga</button>
+                </form>
+                <h3 class="text-xl font-semibold mb-4">Candidatos</h3>
+                <form id="candidate-form" class="mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-1">Nome</label>
+                            <input type="text" class="w-full p-2 border rounded" id="cand-name" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">E-mail</label>
+                            <input type="email" class="w-full p-2 border rounded" id="cand-email" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">URL do Currículo</label>
+                            <input type="url" class="w-full p-2 border rounded" id="cand-resume" placeholder="Simulado URL">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Status</label>
+                            <select class="w-full p-2 border rounded" id="cand-status">
+                                <option value="Inscrito">Inscrito</option>
+                                <option value="Entrevistado">Entrevistado</option>
+                                <option value="Aprovado">Aprovado</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary mt-4">Cadastrar Candidato</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="candidate-table"></tbody>
+                </table>
+            </section>
+
+            <!-- Time Tracking Section -->
+            <section id="time-tracking" class="section" style="display:none;">
+                <h2 class="text-2xl font-semibold mb-4">Controle de Ponto</h2>
+                <form id="time-form" class="mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-1">Data</label>
+                            <input type="date" class="w-full p-2 border rounded" id="time-date" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Entrada</label>
+                            <input type="time" class="w-full p-2 border rounded" id="time-in">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Saída</label>
+                            <input type="time" class="w-full p-2 border rounded" id="time-out">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Notas</label>
+                            <input type="text" class="w-full p-2 border rounded" id="time-notes" placeholder="Ausência ou horas extras">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary mt-4">Registrar Ponto</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Data</th>
+                            <th>Entrada</th>
+                            <th>Saída</th>
+                            <th>Horas Trabalhadas</th>
+                            <th>Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="time-table"></tbody>
+                </table>
+            </section>
+
+            <!-- Performance Section -->
+            <section id="performance" class="section" style="display:none;">
+                <h2 class="text-2xl font-semibold mb-4">Avaliação de Desempenho</h2>
+                <form id="performance-form" class="mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-1">Funcionário</label>
+                            <input type="text" class="w-full p-2 border rounded" id="perf-emp" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Avaliador</label>
+                            <input type="text" class="w-full p-2 border rounded" id="perf-eval" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Período</label>
+                            <select class="w-full p-2 border rounded" id="perf-period">
+                                <option value="Mensal">Mensal</option>
+                                <option value="Trimestral">Trimestral</option>
+                                <option value="Anual">Anual</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Pontuação de Competências (1-10)</label>
+                            <input type="number" min="1" max="10" class="w-full p-2 border rounded" id="perf-skills" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Comentários</label>
+                            <textarea class="w-full p-2 border rounded" id="perf-comments"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary mt-4">Adicionar Avaliação</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Funcionário</th>
+                            <th>Avaliador</th>
+                            <th>Período</th>
+                            <th>Pontuação</th>
+                        </tr>
+                    </thead>
+                    <tbody id="performance-table"></tbody>
+                </table>
+            </section>
+
+            <!-- Training Section -->
+            <section id="training" class="section" style="display:none;">
+                <h2 class="text-2xl font-semibold mb-4">Gerenciamento de Treinamentos</h2>
+                <form id="training-form" class="mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-1">Título</label>
+                            <input type="text" class="w-full p-2 border rounded" id="train-title" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Descrição</label>
+                            <textarea class="w-full p-2 border rounded" id="train-desc"></textarea>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Tipo</label>
+                            <select class="w-full p-2 border rounded" id="train-type">
+                                <option value="Interno">Interno</option>
+                                <option value="Externo">Externo</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Data de Fim</label>
+                            <input type="date" class="w-full p-2 border rounded" id="train-end">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary mt-4">Adicionar Treinamento</button>
+                </form>
+                <h3 class="text-xl font-semibold mb-4">Inscrever Funcionário</h3>
+                <form id="enroll-form">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-1">Nome do Funcionário</label>
+                            <input type="text" class="w-full p-2 border rounded" id="enroll-emp" required>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-1">Título do Treinamento</label>
+                            <input type="text" class="w-full p-2 border rounded" id="enroll-train" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary mt-4">Inscrever</button>
+                </form>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Tipo</th>
+                            <th>Funcionários Inscritos</th>
+                        </tr>
+                    </thead>
+                    <tbody id="training-table"></tbody>
+                </table>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="section" style="display:none;">
+                <h2 class="text-2xl font-semibold mb-4">Relatórios e Análises</h2>
+                <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/63ff5799-6a9f-4236-a85c-a3df2d170b72.png" alt="Interface de relatório detalhada mostrando gráficos de barras para rotatividade de funcionários, gráfico de pizza para distribuição por departamento e gráfico de linhas para tendências de desempenho em um layout profissional de painel" class="w-full h-64 object-cover rounded-lg shadow-md mb-4">
+                <button onclick="generateReport()" class="btn-primary mb-4">Gerar Relatório</button>
+                <div id="report-content">
+                    <h3 class="text-xl font-semibold mb-4">Relatórios Gerados</h3>
+                    <p>Total de Funcionários: <span id="report-emp">0</span></p>
+                    <p>Funcionários Ativos: <span id="report-active">0</span></p>
+                    <p>Funcionários Inativos: <span id="report-inactive">0</span></p>
+                    <p>Taxa de Rotatividade: <span id="report-turnover">0%</span></p>
+                    <p>Salário Médio: R$<span id="report-salary">0</span></p>
+                    <p>Total de Treinamentos: <span id="report-trainings">0</span></p>
+                    <canvas id="report-chart" width="400" height="300"></canvas>
+                </div>
+            </section>
+        </main>
+
+        <footer class="text-center mt-12 text-gray-600" id="footer" style="display:none;">
+            <p>&copy; 2023 Sistema de Gestão de RH. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

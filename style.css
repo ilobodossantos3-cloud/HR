@@ -1,0 +1,290 @@
+/* FileName: style.css */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #1f2937;
+    min-height: 100vh;
+    margin: 0;
+}
+.section {
+    transition: all 0.3s ease;
+    border-left: 4px solid #3b82f6;
+    margin: 10px 0;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+/* Botões profissionais aprimorados */
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 14px 32px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+.btn-primary:hover::before {
+    left: 100%;
+}
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.7);
+    transform: translateY(-3px) scale(1.05);
+}
+.btn-primary:active {
+    transform: translateY(-1px) scale(1.02);
+    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.6);
+}
+.btn-primary:focus-visible {
+    outline: 3px solid #a78bfa;
+    outline-offset: 2px;
+}
+/* Botão de logout com cor diferente e atrativa */
+.btn-logout {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 8px 20px rgba(245, 87, 108, 0.5);
+}
+.btn-logout::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+.btn-logout:hover::before {
+    left: 100%;
+}
+.btn-logout:hover {
+    background: linear-gradient(135deg, #e91e63 0%, #f48fb1 100%);
+    box-shadow: 0 12px 30px rgba(245, 87, 108, 0.7);
+    transform: translateY(-3px) scale(1.05);
+}
+/* Tooltip */
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    background: #111827;
+    color: #f9fafb;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 12px;
+    position: absolute;
+    z-index: 10;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.fade-in {
+    animation: fadeIn 0.5s;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+th {
+    background-color: #f3f4f6;
+    font-weight: 700;
+    color: #374151;
+}
+/* Inputs e selects */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="date"],
+input[type="time"],
+input[type="url"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+    font-family: inherit;
+    color: #111827;
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+input[type="url"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+}
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+/* Header and footer */
+header p {
+    max-width: 600px;
+    margin: 0 auto 1rem;
+}
+footer {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+/* Login and Register page improvements */
+#login, #register {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 40px;
+    border-radius: 20px;
+    animation: slideIn 0.8s ease-out;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    #login, #register {
+        max-width: 90%;
+        margin: 50px auto;
+        padding: 20px;
+    }
+    #login h2 {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+    .section {
+        padding: 15px;
+        margin: 5px 0;
+    }
+    table {
+        font-size: 0.8rem;
+    }
+    th, td {
+        padding: 8px 6px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    #login, #register {
+        margin: 20px auto;
+        padding: 15px;
+    }
+    #login h2 {
+        font-size: 1.25rem;
+    }
+    .btn-primary {
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    .section {
+        padding: 10px;
+    }
+    nav button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+    }
+}
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+#login h2 {
+    text-align: center;
+    color: #4c51bf;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    font-weight: 800;
+}
+#login-form .mb-4 {
+    margin-bottom: 20px;
+}
+#login-form label {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 8px;
+    display: block;
+}
+#login-form input {
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f7fafc;
+}
+#login-form input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    background: white;
+}
+#login-form input::placeholder {
+    color: #a0aec0;
+}
