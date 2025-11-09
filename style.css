@@ -1,39 +1,101 @@
-/* FileName: style.css */
+/* Sistema de Gestão de RH - Design Moderno */
+
+:root {
+    /* Paleta de cores moderna e harmoniosa */
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --primary-dark: #5a67d8;
+    --primary-light: #9f7aea;
+    
+    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --secondary-dark: #e91e63;
+    
+    --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --accent-dark: #3b82f6;
+    
+    --success: #10b981;
+    --error: #ef4444;
+    --warning: #f59e0b;
+    --info: #3b82f6;
+    
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-card: #ffffff;
+    
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-light: #94a3b8;
+    
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+* {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: #1f2937;
+    font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    background-attachment: fixed;
+    color: var(--text-primary);
     min-height: 100vh;
     margin: 0;
+    padding: 0;
 }
+
 .section {
-    transition: all 0.3s ease;
-    border-left: 4px solid #3b82f6;
-    margin: 10px 0;
-    padding: 20px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: none;
+    margin: 20px 0;
+    padding: 32px;
+    background: var(--bg-card);
+    border-radius: 20px;
+    box-shadow: var(--shadow-xl);
+    backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
 }
-/* Botões profissionais aprimorados */
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary-gradient);
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+}
+
+.section:hover::before {
+    transform: scaleX(1);
+}
+
+/* Botões modernos e elegantes */
 .btn-primary {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: var(--primary-gradient);
     color: white;
     border-radius: 12px;
     padding: 14px 32px;
-    font-weight: 700;
-    font-size: 1.1rem;
-    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.5);
+    font-weight: 600;
+    font-size: 1rem;
+    box-shadow: var(--shadow-md);
     border: none;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     user-select: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
+    letter-spacing: 0.5px;
 }
+
 .btn-primary::before {
     content: '';
     position: absolute;
@@ -41,30 +103,37 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transition: left 0.5s;
 }
+
 .btn-primary:hover::before {
     left: 100%;
 }
+
 .btn-primary:hover {
-    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-    box-shadow: 0 12px 30px rgba(102, 126, 234, 0.7);
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    filter: brightness(1.1);
 }
+
 .btn-primary:active {
-    transform: translateY(-1px) scale(1.02);
-    box-shadow: 0 6px 15px rgba(102, 126, 234, 0.6);
+    transform: translateY(0);
+    box-shadow: var(--shadow-md);
 }
+
 .btn-primary:focus-visible {
-    outline: 3px solid #a78bfa;
+    outline: 3px solid rgba(102, 126, 234, 0.5);
     outline-offset: 2px;
 }
-/* Botão de logout com cor diferente e atrativa */
+
+/* Botão de logout */
 .btn-logout {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-    box-shadow: 0 8px 20px rgba(245, 87, 108, 0.5);
+    background: var(--secondary-gradient);
+    box-shadow: var(--shadow-md);
+    color: white;
 }
+
 .btn-logout::before {
     content: '';
     position: absolute;
@@ -72,29 +141,33 @@ body {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
     transition: left 0.5s;
 }
+
 .btn-logout:hover::before {
     left: 100%;
 }
+
 .btn-logout:hover {
-    background: linear-gradient(135deg, #e91e63 0%, #f48fb1 100%);
-    box-shadow: 0 12px 30px rgba(245, 87, 108, 0.7);
-    transform: translateY(-3px) scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    filter: brightness(1.1);
 }
+
 /* Tooltip */
 .tooltip {
     position: relative;
     cursor: pointer;
 }
+
 .tooltip .tooltiptext {
     visibility: hidden;
-    background: #111827;
+    background: rgba(30, 41, 59, 0.95);
     color: #f9fafb;
     text-align: center;
-    border-radius: 6px;
-    padding: 6px 12px;
+    border-radius: 8px;
+    padding: 8px 16px;
     position: absolute;
     z-index: 10;
     bottom: 125%;
@@ -104,15 +177,20 @@ body {
     transition: opacity 0.3s;
     font-size: 0.875rem;
     white-space: nowrap;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: var(--shadow-lg);
+    backdrop-filter: blur(10px);
 }
+
 .tooltip:hover .tooltiptext {
     visibility: visible;
     opacity: 1;
 }
+
+/* Animações */
 .fade-in {
-    animation: fadeIn 0.5s;
+    animation: fadeIn 0.5s ease-out;
 }
+
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -123,22 +201,48 @@ body {
         transform: translateY(0);
     }
 }
+
+/* Tabelas modernas */
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     font-size: 0.95rem;
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
 }
+
 th, td {
-    padding: 10px 12px;
+    padding: 16px 20px;
     text-align: left;
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid var(--border-color);
 }
+
 th {
-    background-color: #f3f4f6;
-    font-weight: 700;
-    color: #374151;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
 }
-/* Inputs e selects */
+
+tbody tr {
+    transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: #f8fafc;
+    transform: scale(1.01);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Inputs e selects modernos */
 input[type="text"],
 input[type="email"],
 input[type="tel"],
@@ -149,14 +253,16 @@ input[type="url"],
 select,
 textarea {
     width: 100%;
-    padding: 10px 12px;
-    border: 1.5px solid #d1d5db;
-    border-radius: 8px;
+    padding: 12px 16px;
+    border: 2px solid var(--border-color);
+    border-radius: 10px;
     font-size: 1rem;
-    transition: border-color 0.3s;
+    transition: all 0.3s ease;
     font-family: inherit;
-    color: #111827;
+    color: var(--text-primary);
+    background: var(--bg-secondary);
 }
+
 input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="tel"]:focus,
@@ -167,85 +273,236 @@ input[type="url"]:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: #3b82f6;
-    box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    background: white;
+    transform: translateY(-1px);
 }
+
 textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 100px;
 }
-/* Header and footer */
+
+/* Header e footer */
+header {
+    margin-bottom: 32px;
+    position: relative;
+}
+
+header h1 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
 header p {
     max-width: 600px;
     margin: 0 auto 1rem;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
+
+/* Estilos para imagens modernas */
+header img,
+section img {
+    filter: brightness(1.05) contrast(1.05);
+}
+
+header .relative,
+section .relative {
+    transition: all 0.3s ease;
+}
+
+header .relative:hover,
+section .relative:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
 footer {
     font-size: 0.9rem;
-    color: #6b7280;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: 48px;
 }
-/* Login and Register page improvements */
+
+/* Login moderno */
 #login, #register {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(20px);
     border: none;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
+    box-shadow: var(--shadow-xl);
+    max-width: 420px;
     margin: 100px auto;
-    padding: 40px;
-    border-radius: 20px;
+    padding: 48px;
+    border-radius: 24px;
     animation: slideIn 0.8s ease-out;
+    position: relative;
+    overflow: hidden;
 }
 
-/* Mobile optimizations */
-@media (max-width: 768px) {
-    #login, #register {
-        max-width: 90%;
-        margin: 50px auto;
-        padding: 20px;
+#login::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary-gradient);
+}
+
+#login h2 {
+    text-align: center;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 2.25rem;
+    margin-bottom: 32px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+#login-form .mb-4 {
+    margin-bottom: 24px;
+}
+
+#login-form label {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 10px;
+    display: block;
+    font-size: 0.9rem;
+}
+
+#login-form input {
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: var(--bg-primary);
+}
+
+#login-form input:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    background: white;
+    transform: translateY(-1px);
+}
+
+#login-form input::placeholder {
+    color: var(--text-light);
+}
+
+/* Loading Spinner */
+.loader {
+    border: 4px solid #f3f4f6;
+    border-top: 4px solid #667eea;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#loading-overlay {
+    display: none;
+    backdrop-filter: blur(4px);
+}
+
+#loading-overlay.show {
+    display: flex;
+}
+
+/* Toast Notifications modernas */
+.toast {
+    min-width: 320px;
+    max-width: 500px;
+    padding: 18px 24px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-bottom: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.toast.success {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+}
+
+.toast.error {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+}
+
+.toast.warning {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: white;
+}
+
+.toast.info {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+}
+
+.toast-message {
+    flex: 1;
+    margin-right: 16px;
+    font-weight: 500;
+}
+
+.toast-close {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 4px 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.9;
+    transition: all 0.2s;
+    border-radius: 6px;
+}
+
+.toast-close:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
     }
-    #login h2 {
-        font-size: 1.5rem;
-        margin-bottom: 20px;
-    }
-    .btn-primary {
-        padding: 10px 20px;
-        font-size: 0.9rem;
-    }
-    .section {
-        padding: 15px;
-        margin: 5px 0;
-    }
-    table {
-        font-size: 0.8rem;
-    }
-    th, td {
-        padding: 8px 6px;
+    to {
+        transform: translateX(0);
+        opacity: 1;
     }
 }
 
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
     }
-    #login, #register {
-        margin: 20px auto;
-        padding: 15px;
-    }
-    #login h2 {
-        font-size: 1.25rem;
-    }
-    .btn-primary {
-        padding: 8px 16px;
-        font-size: 0.85rem;
-    }
-    .section {
-        padding: 10px;
-    }
-    nav button {
-        padding: 8px 12px;
-        font-size: 0.8rem;
+    to {
+        transform: translateX(100%);
+        opacity: 0;
     }
 }
+
 @keyframes slideIn {
     from {
         opacity: 0;
@@ -256,35 +513,431 @@ footer {
         transform: translateY(0);
     }
 }
-#login h2 {
-    text-align: center;
-    color: #4c51bf;
-    font-size: 2rem;
-    margin-bottom: 30px;
-    font-weight: 800;
-}
-#login-form .mb-4 {
-    margin-bottom: 20px;
-}
-#login-form label {
-    font-weight: 600;
-    color: #2d3748;
-    margin-bottom: 8px;
-    display: block;
-}
-#login-form input {
-    border: 2px solid #e2e8f0;
-    border-radius: 10px;
-    padding: 12px 16px;
-    font-size: 1rem;
+
+/* Document List Styles */
+.document-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+    margin-bottom: 12px;
     transition: all 0.3s ease;
-    background: #f7fafc;
 }
-#login-form input:focus {
+
+.document-item:hover {
     border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    background: white;
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
 }
-#login-form input::placeholder {
-    color: #a0aec0;
+
+.document-info {
+    flex: 1;
+}
+
+.document-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+}
+
+.document-type {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.document-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-document {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.btn-view {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-view:hover {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-remove {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-remove:hover {
+    background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Indicadores de edição */
+#employee-edit-indicator,
+#candidate-edit-indicator {
+    border-radius: 12px;
+    animation: slideIn 0.3s ease-out;
+}
+
+/* KPI Cards modernos */
+.grid .bg-gray-100 {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border-radius: 16px;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+}
+
+.grid .bg-gray-100:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: #667eea;
+}
+
+/* Responsividade melhorada */
+@media (max-width: 768px) {
+    #login, #register {
+        max-width: 90%;
+        margin: 50px auto;
+        padding: 32px 24px;
+    }
+    
+    #login h2 {
+        font-size: 1.75rem;
+        margin-bottom: 24px;
+    }
+    
+    .btn-primary {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+    
+    .section {
+        padding: 24px;
+        margin: 10px 0;
+        border-radius: 16px;
+    }
+    
+    table {
+        font-size: 0.85rem;
+    }
+    
+    th, td {
+        padding: 12px 8px;
+    }
+    
+    .toast {
+        min-width: 280px;
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    #login, #register {
+        margin: 20px auto;
+        padding: 24px 16px;
+        border-radius: 20px;
+    }
+    
+    #login h2 {
+        font-size: 1.5rem;
+    }
+    
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 0.85rem;
+    }
+    
+    .section {
+        padding: 20px;
+        border-radius: 16px;
+    }
+    
+    nav button {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        margin: 4px;
+    }
+}
+
+/* Scrollbar personalizada */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+/* Melhorias de acessibilidade */
+*:focus-visible {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
+/* Animações suaves para elementos interativos */
+a, button {
+    transition: all 0.2s ease;
+}
+
+/* Efeito glassmorphism para cards */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+
+
+/* ===== Estilos para Processos Disciplinares ===== */
+.disciplinary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+.proc-form .grid { gap: 14px; }
+.proc-form .md\:col-span-2 { grid-column: span 2 / span 2; }
+
+/* Lista de documentos do processo */
+#proc-docs-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 8px;
+}
+.proc-doc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.98));
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+.proc-doc-thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex: 0 0 56px;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+.proc-doc-info {
+    flex: 1;
+    min-width: 0;
+}
+.proc-doc-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.proc-doc-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Ações do documento */
+.proc-doc-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.btn-doc {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+}
+.btn-doc-open {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+.btn-doc-remove {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Tabela de processos */
+#disciplinary-table tbody tr:hover {
+    transform: none;
+    background: linear-gradient(90deg, rgba(250,250,250,1), rgba(245,246,252,1));
+}
+.severity-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+.severity-lev { background: linear-gradient(135deg, #6ee7b7 0%, #10b981 100%); color: #08332a; }
+.severity-med { background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); }
+.severity-grave { background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); }
+
+/* Pequenas ajudas e placeholders */
+.proc-empty {
+    padding: 18px;
+    border-radius: 12px;
+    background: rgba(99,102,241,0.06);
+    color: var(--text-secondary);
+    border: 1px dashed rgba(99,102,241,0.12);
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .proc-doc-item { flex-direction: row; gap: 10px; padding: 10px; }
+    .proc-doc-thumb { width: 48px; height: 48px; flex: 0 0 48px; }
+    .disciplinary-header { flex-direction: column; align-items: stretch; gap: 8px; }
+}
+/* ===== Estilos para Processos Disciplinares ===== */
+.disciplinary-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+.proc-form .grid { gap: 14px; }
+.proc-form .md\:col-span-2 { grid-column: span 2 / span 2; }
+
+/* Lista de documentos do processo */
+#proc-docs-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 8px;
+}
+.proc-doc-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.98));
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+.proc-doc-thumb {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex: 0 0 56px;
+    border: 1px solid rgba(0,0,0,0.06);
+}
+.proc-doc-info {
+    flex: 1;
+    min-width: 0;
+}
+.proc-doc-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.proc-doc-meta {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+/* Ações do documento */
+.proc-doc-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.btn-doc {
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+}
+.btn-doc-open {
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+.btn-doc-remove {
+    background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+    color: white;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Tabela de processos */
+#disciplinary-table tbody tr:hover {
+    transform: none;
+    background: linear-gradient(90deg, rgba(250,250,250,1), rgba(245,246,252,1));
+}
+.severity-badge {
+    display: inline-block;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+}
+.severity-lev { background: linear-gradient(135deg, #6ee7b7 0%, #10b981 100%); color: #08332a; }
+.severity-med { background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); }
+.severity-grave { background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); }
+
+/* Pequenas ajudas e placeholders */
+.proc-empty {
+    padding: 18px;
+    border-radius: 12px;
+    background: rgba(99,102,241,0.06);
+    color: var(--text-secondary);
+    border: 1px dashed rgba(99,102,241,0.12);
+    text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .proc-doc-item { flex-direction: row; gap: 10px; padding: 10px; }
+    .proc-doc-thumb { width: 48px; height: 48px; flex: 0 0 48px; }
+    .disciplinary-header { flex-direction: column; align-items: stretch; gap: 8px; }
 }
